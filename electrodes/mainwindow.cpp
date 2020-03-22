@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     time = new QTimer(this);
     connect(time, SIGNAL(timeout()), this, SLOT(skinOff()));
     timer.setHMS(0,0,0);
-    time->start(1000);
+
 
 
 }
@@ -23,6 +23,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::skinOff()
 {
+    time->start(1000);
 
     timer = timer.addSecs(1);
     QString stringTime = timer.toString("hh : mm : ss");
