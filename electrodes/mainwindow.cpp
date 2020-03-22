@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDateTime>
 #include <QDebug>
@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     time = new QTimer(this);
     connect(time, SIGNAL(timeout()), this, SLOT(skinOff()));
+    timer.setHMS(0,0,0);
     time->start(1000);
 
 
@@ -22,13 +23,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::skinOff()
 {
-    QTime timer = QTime :: currentTime();
-    QString stopWatch = timer.toString("00: 00 : 00");
-    ui->label->setText(stopWatch);
-    //if (time->isActive()){
-        ui->label_2->setText("SKIN ON");
-        //qDebug() << "Testing";
-    //}
+
+    timer = timer.addSecs(1);
+    QString stringTime = timer.toString("hh : mm : ss");
+    ui->label->setText(stringTime);
+    ui->label_2->setText("SKIN ON");
+
 
 }
 
